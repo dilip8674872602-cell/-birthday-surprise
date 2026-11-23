@@ -1,742 +1,1333 @@
-```html
 <!DOCTYPE html>
-<html lang="en" class="h-full scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Riya Jaanu • Haute Couture 18th Birthday</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            obsidian: '#050208',
-            velvet: '#120516',
-            'velvet-rose': '#881337',
-            'rose-accent': '#E11D48',
-            'rose-pink': '#FB7185',
-            'gold-light': '#F7E1B5',
-            'gold-mid': '#E5C17B',
-            'gold-dark': '#9A7029',
-          },
-          fontFamily: {
-            cinzel: ['Cinzel', 'serif'],
-            cormorant: ['Cormorant Garamond', 'serif'],
-            cursive: ['Great Vibes', 'cursive'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🎀 Riya Jaanu's 18th Birthday Special 🎀</title>
   <style>
-    /* Custom Scrollbar & Root Variables */
-    :root {
-      --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
-      --gold-shine: linear-gradient(90deg, #E5C17B 0%, #FFFFFF 50%, #E5C17B 100%);
-    }
-
-    body {
-      background-color: #050208;
-      color: #F7E1B5;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      overflow-x: hidden;
-      touch-action: manipulation;
+    /* RESET & CORE DESIGN TOKENS */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Gold Metallic Foil Text */
-    .text-gold-foil {
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    :root {
+      --bg-obsidian: #07040c;
+      --bg-card: rgba(22, 14, 34, 0.75);
+      --bg-card-hover: rgba(35, 22, 54, 0.85);
+      --gold-primary: #e6c280;
+      --gold-light: #fbe5b4;
+      --gold-dark: #b89146;
+      --rose-primary: #ff4d79;
+      --rose-glow: rgba(255, 77, 121, 0.35);
+      --text-main: #f3f0f7;
+      --text-muted: #bdaec9;
+      --border-gold: rgba(230, 194, 128, 0.3);
+      --font-display: Georgia, 'Times New Roman', serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
-    .border-gold-glow {
-      border: 1px solid rgba(229, 193, 123, 0.35);
-      box-shadow: 0 0 20px rgba(229, 193, 123, 0.12), inset 0 0 15px rgba(229, 193, 123, 0.05);
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-obsidian);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      line-height: 1.75;
     }
 
-    .border-gold-subtle {
-      border: 1px solid rgba(229, 193, 123, 0.25);
+    /* BACKGROUND ANIMATED GLOWS */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 77, 121, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(230, 194, 128, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(30, 12, 45, 0.5) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .glass-velvet {
-      background: rgba(18, 5, 22, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(229, 193, 123, 0.2);
+    /* MAIN APP CONTAINER */
+    #app-viewport {
+      position: relative;
+      max-width: 480px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 76px 20px 40px 20px;
+      z-index: 1;
     }
 
-    .glass-card {
-      background: rgba(15, 6, 20, 0.65);
+    /* STICKY HEADER */
+    #top-header {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: 60px;
+      background: rgba(7, 4, 12, 0.88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(229, 193, 123, 0.18);
+      border-bottom: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 100;
     }
 
-    /* Candle Flame Animation */
-    @keyframes flameFlicker {
-      0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
-      25% { transform: scale(1.08, 0.95) rotate(1deg); opacity: 1; }
-      50% { transform: scale(0.95, 1.05) rotate(-2deg); opacity: 0.88; }
-      75% { transform: scale(1.04, 0.98) rotate(1.5deg); opacity: 0.97; }
+    .nav-btn {
+      background: rgba(230, 194, 128, 0.12);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
     }
 
-    .flame-anim {
-      animation: flameFlicker 1.4s infinite ease-in-out;
+    .nav-btn:active {
+      transform: scale(0.95);
+      background: rgba(230, 194, 128, 0.25);
+    }
+
+    .stage-indicator {
+      text-align: center;
+    }
+
+    .stage-indicator .stage-tag {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      font-weight: 700;
+      display: block;
+    }
+
+    .stage-indicator .couple-tag {
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--text-main);
+      font-style: italic;
+    }
+
+    /* STAGE CARDS & WRAPPERS */
+    .stage {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .stage.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* GENERAL CARD STYLING */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-header {
+      text-align: center;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold-primary);
+      background: rgba(230, 194, 128, 0.1);
+      border: 1px solid var(--border-gold);
+      padding: 6px 12px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+
+    .title-display {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--gold-light);
+      text-align: center;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .subtitle-text {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* BUTTON STYLING */
+    .btn-action {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, #c49a3c 100%);
+      color: #0d0714;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(230, 194, 128, 0.3);
+      transition: all 0.2s ease;
+      margin-top: 16px;
+      text-decoration: none;
+    }
+
+    .btn-action:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 10px rgba(230, 194, 128, 0.2);
+    }
+
+    .btn-option {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(230, 194, 128, 0.2);
+      color: var(--text-main);
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      text-align: left;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .btn-option:active {
+      background: rgba(230, 194, 128, 0.15);
+      border-color: var(--gold-primary);
+    }
+
+    .btn-option.selected {
+      background: rgba(230, 194, 128, 0.2);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* TOAST / REACTION NOTIFICATION */
+    #toast-notification {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      width: calc(100% - 40px);
+      max-width: 440px;
+      background: rgba(25, 14, 38, 0.95);
+      border: 1px solid var(--rose-primary);
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-size: 13.5px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(255, 77, 121, 0.4);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(10px);
+    }
+
+    #toast-notification.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* QUIZ QUESTION PROGRESS */
+    .quiz-progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      width: 11.1%;
+      background: linear-gradient(90deg, var(--rose-primary), var(--gold-primary));
+      transition: width 0.3s ease;
+    }
+
+    /* CAKE CANVAS & CANDLES (STAGE 2) */
+    .cake-container {
+      position: relative;
+      width: 100%;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cake-svg-wrapper {
+      width: 240px;
+      height: 260px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .flame {
+      transform-origin: center bottom;
+      animation: flicker 0.15s infinite alternate ease-in-out;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1) rotate(-2deg); opacity: 0.9; }
+      100% { transform: scale(1.15) rotate(2deg); opacity: 1; }
+    }
+
+    .flame.extinguished {
+      display: none;
+    }
+
+    .smoke {
+      opacity: 0;
       transform-origin: center bottom;
     }
 
-    @keyframes haloPulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.25); opacity: 0.85; }
+    .flame.extinguished + .smoke {
+      animation: riseSmoke 1.5s ease-out forwards;
     }
 
-    .halo-anim {
-      animation: haloPulse 2s infinite ease-in-out;
+    @keyframes riseSmoke {
+      0% { opacity: 0.8; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-40px) scale(2.5); }
     }
 
-    /* Rising Smoke Animation */
-    @keyframes smokeRise {
-      0% { opacity: 0.8; transform: translateY(0) scale(1) rotate(0deg); }
-      100% { opacity: 0; transform: translateY(-70px) scale(2.8) rotate(25deg); }
+    /* LETTER STYLES (STAGE 3) */
+    .letter-paper {
+      background: linear-gradient(180deg, rgba(28, 18, 42, 0.9) 0%, rgba(18, 10, 28, 0.95) 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      padding: 28px 22px;
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: #eae3f0;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+      position: relative;
     }
 
-    .smoke-particle {
-      animation: smokeRise 2.5s forwards ease-out;
+    .letter-paper p {
+      margin-bottom: 16px;
     }
 
-    /* Pulse Shockwave for Heartbeat */
-    @keyframes shockwave {
-      0% { transform: scale(0.9); opacity: 0.9; }
-      100% { transform: scale(2.2); opacity: 0; }
+    .letter-signature {
+      font-family: var(--font-display);
+      color: var(--gold-primary);
+      font-size: 18px;
+      margin-top: 24px;
+      text-align: right;
     }
 
-    .animate-shockwave {
-      animation: shockwave 1.8s infinite cubic-bezier(0, 0.2, 0.8, 1);
+    /* GALLERY STYLES (STAGE 4) */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    /* Custom Scrollbars */
-    ::-webkit-scrollbar {
-      width: 5px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #050208;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(229, 193, 123, 0.3);
-      border-radius: 999px;
-    }
-
-    /* Shimmer Effect */
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
+    .gallery-item {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed var(--border-gold);
+      border-radius: 16px;
+      aspect-ratio: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
     }
 
-    .btn-gold-shimmer {
-      background: linear-gradient(90deg, #BF953F 0%, #FCF6BA 30%, #B38728 50%, #FCF6BA 70%, #AA771C 100%);
-      background-size: 200% 100%;
-      animation: shimmer 4s infinite linear;
-      color: #050208;
+    .gallery-item.hero {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .gallery-item.has-img img {
+      display: block;
+    }
+
+    .gallery-item.has-img .placeholder-ui {
+      display: none;
+    }
+
+    .gallery-item .change-btn {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(7, 4, 12, 0.8);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 10px;
+      display: none;
+      z-index: 5;
+    }
+
+    .gallery-item.has-img .change-btn {
+      display: block;
+    }
+
+    /* LIGHTBOX MODAL */
+    #lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(5, 2, 8, 0.95);
+      z-index: 2000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(15px);
+    }
+
+    #lightbox-modal.active {
+      display: flex;
+    }
+
+    #lightbox-modal img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 16px;
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    /* DATE PASS STYLES (STAGE 5) */
+    .vip-pass {
+      background: linear-gradient(135deg, #1f142c 0%, #0d0614 100%);
+      border: 2px solid var(--gold-primary);
+      border-radius: 20px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(230, 194, 128, 0.15);
+      margin-top: 20px;
+    }
+
+    .vip-pass::before {
+      content: 'VIP PASS';
+      position: absolute;
+      right: -20px;
+      top: 15px;
+      background: var(--gold-primary);
+      color: #07040c;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      padding: 4px 30px;
+      transform: rotate(45deg);
+    }
+
+    /* 18 REASONS FLIP CARDS (STAGE 6) */
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .reason-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-gold);
+      border-radius: 14px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .reason-card.revealed {
+      background: rgba(230, 194, 128, 0.12);
+      border-color: var(--gold-primary);
+    }
+
+    .reason-num {
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--gold-primary);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .reason-text {
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    .reason-card.revealed .reason-text {
+      color: var(--text-main);
+    }
+
+    /* COMPATIBILITY SCANNER (STAGE 7) */
+    .scanner-box {
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    .scanner-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid rgba(230, 194, 128, 0.2);
+      border-top-color: var(--rose-primary);
+      border-right-color: var(--gold-primary);
+      margin: 0 auto 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .scanner-circle.scanning {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .scan-val {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--gold-light);
+      font-family: var(--font-display);
+    }
+
+    /* WISH JAR CAPSULES (STAGE 8) */
+    .jar-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .capsule {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 18px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .capsule.opened {
+      background: rgba(255, 77, 121, 0.15);
+      border-color: var(--rose-primary);
+    }
+
+    /* BIOMETRIC SCANNER (STAGE 9) */
+    .biometric-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .thumb-print {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: rgba(230, 194, 128, 0.08);
+      border: 2px dashed var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      touch-action: none;
+    }
+
+    .thumb-print svg {
+      width: 54px;
+      height: 54px;
+      fill: var(--gold-primary);
+      transition: all 0.3s ease;
+    }
+
+    .thumb-print.holding svg {
+      fill: var(--rose-primary);
+      transform: scale(1.1);
+    }
+
+    .progress-ring {
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      width: 122px;
+      height: 122px;
+      transform: rotate(-90deg);
+      pointer-events: none;
+    }
+
+    .progress-ring circle {
+      fill: transparent;
+      stroke: var(--rose-primary);
+      stroke-width: 4;
+      stroke-dasharray: 364;
+      stroke-dashoffset: 364;
+      transition: stroke-dashoffset 0.1s linear;
+    }
+
+    /* CERTIFICATE (STAGE 10) */
+    .certificate-card {
+      background: linear-gradient(180deg, #170d24 0%, #090412 100%);
+      border: 2px solid var(--gold-primary);
+      border-radius: 20px;
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(230, 194, 128, 0.2);
+      position: relative;
+    }
+
+    .certificate-card::after {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(230, 194, 128, 0.3);
+      border-radius: 14px;
+      pointer-events: none;
+    }
+
+    /* UTILITY & ANIMATION CANVAS */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-rose-accent selection:text-white relative">
+<body>
 
-  <!-- Background Ambient Particle Canvas -->
-  <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+  <!-- BACKGROUND FIREWORKS CANVAS -->
+  <canvas id="confetti-canvas"></canvas>
 
-  <!-- Aurora Silk Glow Highlights -->
-  <div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-velvet-rose/20 rounded-full blur-[120px] pointer-events-none z-0"></div>
-  <div class="fixed bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-gold-dark/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
-
-  <!-- FIXED TOP NAVIGATION BAR -->
-  <header class="fixed top-0 left-0 right-0 z-50 px-4 py-3 glass-velvet border-b border-gold-glow flex items-center justify-between shadow-2xl">
-    <!-- Back Button -->
-    <button id="navBackBtn" onclick="navigateBack()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold-mid/40 bg-obsidian/60 text-gold-light text-xs font-medium hover:bg-gold-mid/20 transition-all opacity-0 pointer-events-none" aria-label="Go Back">
-      <svg class="w-4 h-4 text-gold-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-      <span>Back</span>
-    </button>
-
-    <!-- Stage Indicators Dots -->
-    <div class="flex items-center gap-2">
-      <div id="dot1" class="w-2.5 h-2.5 rounded-full bg-gold-mid transition-all duration-500 scale-125 shadow-[0_0_8px_#E5C17B]"></div>
-      <div id="dot2" class="w-2 h-2 rounded-full bg-gold-mid/30 transition-all duration-500"></div>
-      <div id="dot3" class="w-2 h-2 rounded-full bg-gold-mid/30 transition-all duration-500"></div>
-      <div id="dot4" class="w-2 h-2 rounded-full bg-gold-mid/30 transition-all duration-500"></div>
+  <!-- STICKY TOP HEADER -->
+  <header id="top-header">
+    <button class="nav-btn" id="btn-back" onclick="handleBackClick()">‹ Back</button>
+    <div class="stage-indicator">
+      <span class="stage-tag" id="stage-tag-display">STAGE 1 / 10</span>
+      <span class="couple-tag">Riya & Krishna</span>
     </div>
-
-    <!-- Audio Toggle Button -->
-    <button id="audioToggleBtn" onclick="toggleAudio()" class="w-8 h-8 rounded-full border border-gold-mid/40 bg-obsidian/60 flex items-center justify-center text-gold-mid hover:bg-gold-mid/20 transition-all" aria-label="Toggle Sound">
-      <svg id="audioIconOff" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>
-      <svg id="audioIconOn" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
-    </button>
+    <button class="nav-btn" id="btn-music" onclick="toggleAudio()">Music 🎵</button>
   </header>
 
-  <!-- MAIN CONTAINER (STAGE VIEWS) -->
-  <main class="relative z-10 flex-1 flex flex-col justify-center items-center pt-20 pb-12 px-4 max-w-4xl mx-auto w-full">
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main id="app-viewport">
 
-    <!-- ================= STAGE 1: THE VELVET GATE ================= -->
-    <section id="stage1" class="w-full max-w-md flex flex-col items-center text-center space-y-6 transition-all duration-700 ease-out">
-      
-      <!-- Haute Crest Badge -->
-      <div class="relative group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-gold-mid via-rose-pink to-gold-dark rounded-full blur opacity-40 group-hover:opacity-75 transition duration-1000"></div>
-        <div class="relative w-28 h-28 rounded-full border-2 border-gold-glow bg-velvet flex flex-col items-center justify-center p-2 shadow-2xl">
-          <svg class="w-10 h-10 text-gold-mid mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 2l2.4 5.2L20 8l-4 4.2L17 18l-5-2.8L7 18l1-5.8-4-4.2 5.6-.8L12 2z"/>
-          </svg>
-          <span class="font-cinzel text-[10px] tracking-[0.2em] text-gold-light uppercase font-bold">Haute Edition</span>
-          <span class="font-cormorant text-xs italic text-rose-pink">XVIII</span>
-        </div>
-      </div>
-
-      <!-- Header Typography -->
-      <div class="space-y-2">
-        <div class="inline-block px-3 py-1 rounded-full border border-gold-mid/30 bg-velvet-rose/30 text-[11px] font-cinzel tracking-[0.25em] text-gold-light uppercase">
-          24 November • Turning 18
-        </div>
-        <h1 class="text-4xl md:text-5xl font-cinzel font-bold tracking-tight text-gold-foil drop-shadow-md">
-          Riya Jaanu
-        </h1>
-        <p class="font-cormorant italic text-lg text-gold-light/80">
-          A Couture Birthday Celebration Crafted with Love
-        </p>
-      </div>
-
-      <!-- Velvet Question Box -->
-      <div class="w-full glass-card rounded-2xl p-6 shadow-2xl border-gold-glow space-y-6 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-24 h-24 bg-rose-accent/10 rounded-full blur-2xl pointer-events-none"></div>
-
-        <h2 class="font-cinzel text-xl text-white font-semibold tracking-wide">
-          Do You Love Krishna Betu? 💕
-        </h2>
-        <p class="text-xs font-sans text-gold-light/70 italic">
-          (Answer honestly to enter your 18th Birthday Royal Gala)
-        </p>
-
-        <!-- Interactive Buttons Container -->
-        <div class="relative h-28 flex items-center justify-center gap-4 pt-2">
-          <!-- YES BUTTON -->
-          <button id="yesBtn" onclick="goToStage(2)" class="btn-gold-shimmer px-8 py-3.5 rounded-full font-cinzel font-bold text-sm tracking-wider shadow-[0_0_25px_rgba(229,193,123,0.4)] hover:scale-105 active:scale-95 transition-transform z-10">
-            YES, ALWAYS ❤️
-          </button>
-
-          <!-- DODGING NO BUTTON -->
-          <button id="noBtn" class="px-6 py-3.5 rounded-full border border-gold-mid/40 bg-obsidian/80 text-gold-light font-cinzel font-semibold text-xs tracking-wider transition-all duration-300 z-10">
-            No 🙈
-          </button>
-        </div>
-
-        <!-- Dynamic Dodge Toast Prompt -->
-        <p id="noPromptText" class="h-4 text-xs font-sans text-rose-pink italic font-medium transition-opacity duration-300 opacity-0">
-          Prompt message here...
-        </p>
-      </div>
-
-      <p class="text-[11px] font-cormorant tracking-widest text-gold-light/50 uppercase">
-        Created by Krishna Betu for Riya Jaanu
-      </p>
-    </section>
-
-    <!-- ================= STAGE 2: MASTERPIECE 3-TIER PATISSERIE CAKE & VERBATIM LETTER ================= -->
-    <section id="stage2" class="w-full max-w-2xl flex flex-col items-center text-center space-y-8 hidden opacity-0 transition-all duration-700">
-      
-      <!-- Header Banner -->
-      <div class="space-y-1">
-        <span class="font-cursive text-3xl text-rose-pink">Happy 18th Birthday</span>
-        <h2 class="font-cinzel text-3xl md:text-4xl font-extrabold text-gold-foil">Riya Jaanu</h2>
-        <p id="cakeSubInstruction" class="text-xs font-sans text-gold-light/80 tracking-wide pt-1">
-          ✨ Tap the candles or blow button below to ignite your celebration! ✨
-        </p>
-      </div>
-
-      <!-- PATISSERIE 3-TIER CAKE DISPLAY CONTAINER -->
-      <div id="cakeWrapper" onclick="handleBlowCandles()" class="relative w-full max-w-xs md:max-w-sm h-72 md:h-80 flex flex-col items-center justify-end cursor-pointer group">
+    <!-- STAGE 1: QUIZ -->
+    <section id="stage-1" class="stage active">
+      <div class="card">
+        <span class="badge-header">🎀 RIYA'S 18TH BIRTHDAY SPECIAL 🎀 • 24 NOVEMBER ❤️</span>
         
-        <!-- Ambient Radial Candle Glow -->
-        <div id="candleGlowHalo" class="absolute top-2 w-44 h-44 bg-amber-400/25 rounded-full blur-3xl halo-anim pointer-events-none"></div>
-
-        <!-- Interactive SVG Cake & Pedestal -->
-        <svg class="w-full h-full drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]" viewBox="0 0 300 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <!-- Metallic Gold Gradients -->
-            <linearGradient id="goldStand" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#9A7029" />
-              <stop offset="35%" stop-color="#FCF6BA" />
-              <stop offset="70%" stop-color="#E5C17B" />
-              <stop offset="100%" stop-color="#785315" />
-            </linearGradient>
-
-            <linearGradient id="velvetTier" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#4A051B" />
-              <stop offset="50%" stop-color="#881337" />
-              <stop offset="100%" stop-color="#2E0210" />
-            </linearGradient>
-
-            <linearGradient id="champagneTier" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#B89552" />
-              <stop offset="50%" stop-color="#F7E1B5" />
-              <stop offset="100%" stop-color="#8C6721" />
-            </linearGradient>
-
-            <linearGradient id="flameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#FFF59D" />
-              <stop offset="40%" stop-color="#FF9800" />
-              <stop offset="100%" stop-color="#E65100" />
-            </linearGradient>
-
-            <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-
-          <!-- GILDED PEDESTAL STAND -->
-          <!-- Stand Base -->
-          <ellipse cx="150" cy="295" rx="85" ry="14" fill="url(#goldStand)" opacity="0.9"/>
-          <path d="M135 295 L145 270 L155 270 L165 295 Z" fill="url(#goldStand)"/>
-          <!-- Stand Platter Plate -->
-          <ellipse cx="150" cy="270" rx="110" ry="16" fill="url(#goldStand)"/>
-          <ellipse cx="150" cy="268" rx="104" ry="12" fill="#1A0A10"/>
-
-          <!-- TIER 3 (BOTTOM TIER - Velvet Maroon) -->
-          <path d="M60 215 C60 215 60 262 150 262 C240 262 240 215 240 215 L240 220 C240 238 200 252 150 252 C100 252 60 238 60 220 Z" fill="#2E0210"/>
-          <rect x="60" y="215" width="180" height="35" rx="0" fill="url(#velvetTier)" />
-          <ellipse cx="150" cy="215" rx="90" ry="14" fill="#9F1239" />
-          <!-- Pearl Piped Border Bottom Tier -->
-          <g fill="#F7E1B5" opacity="0.85">
-            <circle cx="65" cy="250" r="3"/><circle cx="80" cy="254" r="3"/><circle cx="98" cy="257" r="3"/>
-            <circle cx="118" cy="259" r="3"/><circle cx="138" cy="260" r="3"/><circle cx="158" cy="260" r="3"/>
-            <circle cx="178" cy="259" r="3"/><circle cx="198" cy="257" r="3"/><circle cx="218" cy="254" r="3"/><circle cx="233" cy="250" r="3"/>
-          </g>
-          <!-- Gold Drips on Tier 3 -->
-          <path d="M62 215 Q75 235 85 215 Q100 240 115 215 Q135 238 150 215 Q170 242 185 215 Q205 235 220 215 Q232 230 238 215" fill="none" stroke="url(#goldStand)" stroke-width="4" stroke-linecap="round"/>
-
-          <!-- TIER 2 (MIDDLE TIER - Champagne Gold) -->
-          <rect x="85" y="165" width="130" height="40" fill="url(#champagneTier)" />
-          <ellipse cx="150" cy="165" rx="65" ry="11" fill="#FCF6BA" />
-          <!-- Rose Sugar Flowers Tier 2 -->
-          <circle cx="95" cy="190" r="5" fill="#E11D48"/>
-          <circle cx="92" cy="188" r="3" fill="#FB7185"/>
-          <circle cx="205" cy="190" r="5" fill="#E11D48"/>
-          <circle cx="208" cy="188" r="3" fill="#FB7185"/>
-
-          <!-- TIER 1 (TOP TIER - Velvet Deep Rose) -->
-          <rect x="108" y="120" width="84" height="38" fill="url(#velvetTier)" />
-          <ellipse cx="150" cy="120" rx="42" ry="8" fill="#E11D48" />
-          <!-- Gold Leaf Decorative Specks -->
-          <circle cx="120" cy="135" r="1.5" fill="#FCF6BA"/>
-          <circle cx="130" cy="145" r="2" fill="#FCF6BA"/>
-          <circle cx="165" cy="132" r="1.5" fill="#FCF6BA"/>
-          <circle cx="178" cy="142" r="2" fill="#FCF6BA"/>
-
-          <!-- CANDLES: METALLIC GOLD NUMBER "1" & "8" -->
-          <!-- Number 1 Candle -->
-          <path d="M130 115 L130 85 M125 90 L130 85" stroke="url(#goldStand)" stroke-width="4.5" stroke-linecap="round"/>
-          <!-- Number 8 Candle -->
-          <path d="M167 92 C162 92 162 82 167 82 C172 82 172 92 167 92 Z M167 104 C161 104 161 92 167 92 C173 92 173 104 167 104 Z" fill="none" stroke="url(#goldStand)" stroke-width="4"/>
-
-          <!-- Wicks -->
-          <line x1="130" y1="85" x2="130" y2="76" stroke="#555" stroke-width="1.5"/>
-          <line x1="167" y1="82" x2="167" y2="76" stroke="#555" stroke-width="1.5"/>
-
-          <!-- CANDLE FLAMES (GROUP) -->
-          <g id="candleFlamesGroup">
-            <!-- Flame 1 -->
-            <g class="flame-anim">
-              <ellipse cx="130" cy="65" rx="7" ry="12" fill="url(#flameGrad)" filter="url(#glowFilter)"/>
-              <ellipse cx="130" cy="67" rx="3" ry="6" fill="#FFFFFF"/>
-            </g>
-            <!-- Flame 2 -->
-            <g class="flame-anim" style="animation-delay: 0.3s;">
-              <ellipse cx="167" cy="65" rx="7" ry="12" fill="url(#flameGrad)" filter="url(#glowFilter)"/>
-              <ellipse cx="167" cy="67" rx="3" ry="6" fill="#FFFFFF"/>
-            </g>
-          </g>
-
-          <!-- SMOKE EFFECT CONTAINER (Dynamically injected) -->
-          <g id="smokeGroup"></g>
-        </svg>
-      </div>
-
-      <!-- Blow Candle Action Button -->
-      <button id="blowCandlesBtn" onclick="handleBlowCandles()" class="btn-gold-shimmer px-8 py-3.5 rounded-full font-cinzel font-bold text-xs md:text-sm tracking-widest shadow-[0_0_20px_rgba(229,193,123,0.3)] hover:scale-105 active:scale-95 transition-transform flex items-center gap-2">
-        <span>🌬️ BLOW OUT THE CANDLES</span>
-      </button>
-
-      <!-- VERBATIM LOVE LETTER CARD (Revealed after blowing candles or scrolling) -->
-      <div id="letterCard" class="w-full glass-velvet rounded-3xl p-6 md:p-10 border-gold-glow text-left space-y-6 hidden opacity-0 transform translate-y-8 transition-all duration-1000 shadow-2xl relative overflow-hidden">
-        
-        <!-- Parchment Watermark & Gold Corner Brackets -->
-        <div class="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-gold-mid/60"></div>
-        <div class="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-gold-mid/60"></div>
-        <div class="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-gold-mid/60"></div>
-        <div class="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-gold-mid/60"></div>
-
-        <!-- Letter Header -->
-        <div class="text-center pb-4 border-b border-gold-mid/20">
-          <span class="font-cinzel text-xs tracking-[0.3em] text-gold-mid uppercase">A Royal Keepsake Letter</span>
-          <h3 class="font-cormorant italic text-2xl text-rose-pink font-semibold pt-1">For My Beloved Riya Jaanu</h3>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="quiz-progress"></div>
         </div>
 
-        <!-- EXACT VERBATIM LETTER CONTENT -->
-        <div class="font-cormorant text-lg md:text-xl text-gold-light/95 leading-relaxed space-y-4 font-normal tracking-wide whitespace-pre-line">
-💗 My Dear Riya Jaanu
-
-Happy Birthday meri sabse pasandida Jaanu! 🎂❤️
-
-Pata nahi main apne dil ki saari baatein words mein kabhi samjha bhi paunga ya nahi, lekin aaj aapke birthday par kuch kehna chahta hoon.
-
-Jaanu, mujhe nahi pata ki mera ye chhota sa surprise dekhkar aap khush hongi ya nahi, lekin maine ise banane mein apni saari feelings daal di hain. Shayad main aapko har baar woh khushi nahi de paaya jo aap deserve karti hain, shayad mujhse bahut si galtiyan bhi hui hain. Lekin aaj dil se apni har galti ke liye aapse maafi maangta hoon. ❤️
-
-Kabhi-kabhi sochta hoon ki aap meri life mein kitni special ho. Aapke saath chhoti-chhoti baatein karna, aapko pareshan karna, aapki smile ki wajah banna aur aapke saath apne future ke sapne dekhna... ye sab mere liye bahut precious hai.
-
-Main koi perfect insaan nahi hoon, Jaanu. Mujhse galtiyan hongi, kabhi main galat bhi ho sakta hoon, lekin main apni galtiyon ko samajhna aur khud ko behtar banana chahta hoon.
-
-Aaj aap 18 ki ho gayi ho! 🥹❤️ Aapki life ka ek naya chapter shuru ho raha hai. Meri dil se dua hai ki aapke har sapne poore hon, aapko duniya ki saari khushiyan milein aur aapki aankhon mein hamesha khushi ho.
-
-Ek baat kehna chahta hoon...
-
-Mujhe aapse koi badi cheez nahi chahiye. Bas humare beech pyaar ke saath understanding, respect aur trust bana rahe. Zindagi mein kitni bhi problems aayein, hum ek-doosre ko samajhne ki koshish karein.
-
-Main aapko sirf aaj nahi, balki aane wale har birthday par wish karna chahta hoon. Aapki khushiyon ka hissa banna chahta hoon aur aapke saath bahut saari beautiful memories banana chahta hoon.
-
-Happy Birthday meri Riya Jaanu! 🎀
-
-Aap meri pasandida insaan ho, meri favourite feeling ho aur meri life ki ek bahut khoobsurat kahani ho.
-
-I LOVE YOU JI! ❤️
-
-Hamesha khush rehna meri Jaanu.
-
-Aapka Pagla Diwana,
-Krishna Betu ❤️🫶😁😁
-        </div>
-
-        <!-- Letter Footer CTA -->
-        <div class="pt-6 border-t border-gold-mid/20 text-center">
-          <button onclick="goToStage(3)" class="btn-gold-shimmer px-8 py-3.5 rounded-full font-cinzel font-bold text-xs md:text-sm tracking-widest shadow-lg hover:scale-105 transition-transform">
-            EXPLORE OUR GALLERY ➔
-          </button>
+        <div id="quiz-container">
+          <!-- QUESTIONS RENDERED DYNAMICALY BY JS -->
         </div>
       </div>
     </section>
 
-    <!-- ================= STAGE 3: OUR LOVE GALLERY (NATIVE MOBILE PICKER) ================= -->
-    <section id="stage3" class="w-full max-w-3xl flex flex-col items-center space-y-8 hidden opacity-0 transition-all duration-700">
-      
-      <!-- Gallery Header -->
-      <div class="text-center space-y-2">
-        <span class="font-cinzel text-xs tracking-[0.3em] text-gold-mid uppercase">Cherished Memories</span>
-        <h2 class="font-cinzel text-3xl md:text-4xl font-extrabold text-gold-foil">Our Love Gallery</h2>
-        <p class="text-xs font-sans text-gold-light/70 max-w-md">
-          Tap any frame to upload & feature your favorite pictures directly from your mobile phone gallery!
-        </p>
+    <!-- STAGE 2: LUXURY PATISSERIE CAKE -->
+    <section id="stage-2" class="stage">
+      <div class="card">
+        <span class="badge-header">STAGE 2 • ROYAL BIRTHDAY CAKE</span>
+        <h2 class="title-display">Blow Your 18th Candles 🎂</h2>
+        <p class="subtitle-text">Make a wish from your heart, Riya Jaanu!</p>
+
+        <div class="cake-container">
+          <div class="cake-svg-wrapper" onclick="blowCandles()">
+            <svg viewBox="0 0 240 260" width="100%" height="100%">
+              <!-- Cake Base Platform -->
+              <ellipse cx="120" cy="240" rx="100" ry="16" fill="rgba(230,194,128,0.2)" stroke="#e6c280" stroke-width="1.5"/>
+              
+              <!-- Bottom Tier -->
+              <path d="M40 180 Q120 200 200 180 L200 230 Q120 250 40 230 Z" fill="#2a1638" stroke="#e6c280" stroke-width="1"/>
+              <path d="M40 180 Q120 200 200 180" fill="none" stroke="#ff4d79" stroke-width="4"/>
+              
+              <!-- Middle Tier -->
+              <path d="M60 130 Q120 150 180 130 L180 180 Q120 200 60 180 Z" fill="#381d4a" stroke="#e6c280" stroke-width="1"/>
+              <path d="M60 130 Q120 150 180 130" fill="none" stroke="#e6c280" stroke-width="4"/>
+              
+              <!-- Top Tier -->
+              <path d="M80 85 Q120 100 160 85 L160 130 Q120 150 80 130 Z" fill="#4a2563" stroke="#e6c280" stroke-width="1"/>
+              <path d="M80 85 Q120 100 160 85" fill="none" stroke="#ff4d79" stroke-width="3"/>
+              
+              <!-- Gold Leaf & Frosting Details -->
+              <text x="120" y="115" text-anchor="middle" fill="#e6c280" font-family="Georgia" font-size="11" font-weight="bold" letter-spacing="1">RIYA JAANU</text>
+              <text x="120" y="163" text-anchor="middle" fill="#fbe5b4" font-family="Georgia" font-size="12" font-style="italic">Happy 18th Birthday</text>
+
+              <!-- Candle 1 -->
+              <rect x="100" y="45" width="10" height="40" rx="3" fill="url(#gold-grad)"/>
+              <path d="M100 50 Q105 55 110 50" fill="none" stroke="#ff4d79" stroke-width="2"/>
+              <!-- Candle 8 -->
+              <rect x="130" y="45" width="10" height="40" rx="3" fill="url(#gold-grad)"/>
+              <path d="M130 50 Q135 55 140 50" fill="none" stroke="#ff4d79" stroke-width="2"/>
+
+              <!-- Wicks -->
+              <line x1="105" y1="45" x2="105" y2="38" stroke="#aaa" stroke-width="2"/>
+              <line x1="135" y1="45" x2="135" y2="38" stroke="#aaa" stroke-width="2"/>
+
+              <!-- Flame 1 -->
+              <g class="flame" id="flame-1">
+                <path d="M105 38 Q98 25 105 12 Q112 25 105 38 Z" fill="#ff9d00"/>
+                <path d="M105 35 Q101 25 105 18 Q109 25 105 35 Z" fill="#ffe600"/>
+              </g>
+              <circle class="smoke" cx="105" cy="30" r="6" fill="rgba(200,200,200,0.5)"/>
+
+              <!-- Flame 2 -->
+              <g class="flame" id="flame-2">
+                <path d="M135 38 Q128 25 135 12 Q142 25 135 38 Z" fill="#ff9d00"/>
+                <path d="M135 35 Q131 25 135 18 Q139 25 135 35 Z" fill="#ffe600"/>
+              </g>
+              <circle class="smoke" cx="135" cy="30" r="6" fill="rgba(200,200,200,0.5)"/>
+
+              <defs>
+                <linearGradient id="gold-grad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#b89146"/>
+                  <stop offset="50%" stop-color="#fbe5b4"/>
+                  <stop offset="100%" stop-color="#b89146"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <button class="btn-action" onclick="blowCandles()">Make a Wish & Blow Candles 🌬️</button>
+          <button class="btn-action" id="btn-next-2" style="display:none;" onclick="goToStage(3)">Read Krishna's Heartfelt Letter 💌 →</button>
+        </div>
       </div>
-
-      <!-- 5 MASONRY / SPOTLIGHT GALLERY CARDS -->
-      <div class="grid grid-cols-1 md:grid-cols-6 gap-4 w-full">
-
-        <!-- Frame 1 (Large Featured) -->
-        <div class="md:col-span-4 relative group glass-card rounded-2xl p-3 border-gold-glow flex flex-col items-center overflow-hidden min-h-[260px]">
-          <div class="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold-mid"></div>
-          <div class="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold-mid"></div>
-          <div class="w-full h-56 rounded-xl overflow-hidden bg-obsidian/80 relative flex items-center justify-center">
-            <img id="imgFrame1" src="https://placehold.co/800x600/120516/E5C17B?text=Tap+to+Add+Photo+1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Memory 1" />
-            <!-- Native Input File Overlay -->
-            <input type="file" accept="image/*" onchange="handleImageUpload(event, 'imgFrame1')" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-20" aria-label="Upload Photo 1" />
-          </div>
-          <div class="w-full flex items-center justify-between pt-2 px-1">
-            <span class="font-cinzel text-xs text-gold-light">01. Precious Moment</span>
-            <button onclick="openLightbox('imgFrame1')" class="text-xs font-sans text-rose-pink hover:underline z-30">Zoom ✨</button>
-          </div>
-        </div>
-
-        <!-- Frame 2 -->
-        <div class="md:col-span-2 relative group glass-card rounded-2xl p-3 border-gold-glow flex flex-col items-center overflow-hidden min-h-[260px]">
-          <div class="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold-mid"></div>
-          <div class="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold-mid"></div>
-          <div class="w-full h-56 rounded-xl overflow-hidden bg-obsidian/80 relative flex items-center justify-center">
-            <img id="imgFrame2" src="https://placehold.co/600x800/120516/E5C17B?text=Tap+Photo+2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Memory 2" />
-            <input type="file" accept="image/*" onchange="handleImageUpload(event, 'imgFrame2')" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-20" aria-label="Upload Photo 2" />
-          </div>
-          <div class="w-full flex items-center justify-between pt-2 px-1">
-            <span class="font-cinzel text-xs text-gold-light">02. Sweet Smile</span>
-            <button onclick="openLightbox('imgFrame2')" class="text-xs font-sans text-rose-pink hover:underline z-30">Zoom ✨</button>
-          </div>
-        </div>
-
-        <!-- Frame 3 -->
-        <div class="md:col-span-2 relative group glass-card rounded-2xl p-3 border-gold-glow flex flex-col items-center overflow-hidden min-h-[240px]">
-          <div class="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold-mid"></div>
-          <div class="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold-mid"></div>
-          <div class="w-full h-48 rounded-xl overflow-hidden bg-obsidian/80 relative flex items-center justify-center">
-            <img id="imgFrame3" src="https://placehold.co/600x800/120516/E5C17B?text=Tap+Photo+3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Memory 3" />
-            <input type="file" accept="image/*" onchange="handleImageUpload(event, 'imgFrame3')" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-20" aria-label="Upload Photo 3" />
-          </div>
-          <div class="w-full flex items-center justify-between pt-2 px-1">
-            <span class="font-cinzel text-xs text-gold-light">03. Together</span>
-            <button onclick="openLightbox('imgFrame3')" class="text-xs font-sans text-rose-pink hover:underline z-30">Zoom ✨</button>
-          </div>
-        </div>
-
-        <!-- Frame 4 -->
-        <div class="md:col-span-2 relative group glass-card rounded-2xl p-3 border-gold-glow flex flex-col items-center overflow-hidden min-h-[240px]">
-          <div class="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold-mid"></div>
-          <div class="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold-mid"></div>
-          <div class="w-full h-48 rounded-xl overflow-hidden bg-obsidian/80 relative flex items-center justify-center">
-            <img id="imgFrame4" src="https://placehold.co/600x800/120516/E5C17B?text=Tap+Photo+4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Memory 4" />
-            <input type="file" accept="image/*" onchange="handleImageUpload(event, 'imgFrame4')" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-20" aria-label="Upload Photo 4" />
-          </div>
-          <div class="w-full flex items-center justify-between pt-2 px-1">
-            <span class="font-cinzel text-xs text-gold-light">04. Pure Love</span>
-            <button onclick="openLightbox('imgFrame4')" class="text-xs font-sans text-rose-pink hover:underline z-30">Zoom ✨</button>
-          </div>
-        </div>
-
-        <!-- Frame 5 -->
-        <div class="md:col-span-2 relative group glass-card rounded-2xl p-3 border-gold-glow flex flex-col items-center overflow-hidden min-h-[240px]">
-          <div class="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold-mid"></div>
-          <div class="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold-mid"></div>
-          <div class="w-full h-48 rounded-xl overflow-hidden bg-obsidian/80 relative flex items-center justify-center">
-            <img id="imgFrame5" src="https://placehold.co/600x800/120516/E5C17B?text=Tap+Photo+5" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Memory 5" />
-            <input type="file" accept="image/*" onchange="handleImageUpload(event, 'imgFrame5')" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-20" aria-label="Upload Photo 5" />
-          </div>
-          <div class="w-full flex items-center justify-between pt-2 px-1">
-            <span class="font-cinzel text-xs text-gold-light">05. Forever & Always</span>
-            <button onclick="openLightbox('imgFrame5')" class="text-xs font-sans text-rose-pink hover:underline z-30">Zoom ✨</button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Navigation to Finale -->
-      <button onclick="goToStage(4)" class="btn-gold-shimmer px-8 py-3.5 rounded-full font-cinzel font-bold text-xs md:text-sm tracking-widest shadow-xl hover:scale-105 transition-transform">
-        PROCEED TO HEARTBEAT SYNC ➔
-      </button>
     </section>
 
-    <!-- ================= STAGE 4: HEARTBEAT SYNC FINALE ================= -->
-    <section id="stage4" class="w-full max-w-md flex flex-col items-center text-center space-y-8 hidden opacity-0 transition-all duration-700">
-      
-      <!-- Finale Header -->
-      <div class="space-y-2">
-        <span class="font-cinzel text-xs tracking-[0.3em] text-gold-mid uppercase">Biometric Soul Connection</span>
-        <h2 class="font-cinzel text-3xl font-extrabold text-gold-foil">Heartbeat Sync</h2>
-        <p class="text-xs font-sans text-gold-light/75">
-          Press & Hold the Rose-Gold Sensor ring to sync Riya Jaanu's heartbeats with Krishna Betu
-        </p>
-      </div>
+    <!-- STAGE 3: KRISHNA'S VERBATIM LETTER -->
+    <section id="stage-3" class="stage">
+      <div class="card">
+        <span class="badge-header">STAGE 3 • FROM KRISHNA'S HEART</span>
+        <h2 class="title-display">Heartfelt Birthday Letter 💌</h2>
 
-      <!-- BIOMETRIC HEARTBEAT SENSOR RING CONTAINER -->
-      <div class="relative w-64 h-64 flex items-center justify-center">
-        <!-- Shockwave Pulse Rings -->
-        <div id="shockwaveRing" class="absolute inset-0 rounded-full border-2 border-rose-accent/40 animate-shockwave opacity-0 pointer-events-none"></div>
-        <div class="absolute -inset-4 rounded-full border border-gold-mid/20 pointer-events-none"></div>
-
-        <!-- Touch / Click Sensor Button -->
-        <button id="heartSensorBtn" 
-                onmousedown="startHeartbeat()" 
-                onmouseup="stopHeartbeat()" 
-                mouseleave="stopHeartbeat()"
-                ontouchstart="startHeartbeat(event)" 
-                ontouchend="stopHeartbeat(event)"
-                class="relative w-48 h-48 rounded-full border-2 border-gold-glow bg-gradient-to-br from-velvet-rose via-obsidian to-velvet flex flex-col items-center justify-center p-4 shadow-[0_0_35px_rgba(225,29,72,0.3)] active:scale-95 transition-transform select-none">
+        <div class="letter-paper">
+          <p>💗 My Dear Riya Jaanu</p>
+          <p>Happy Birthday meri sabse pasandida Jaanu! 🎂❤️</p>
+          <p>Pata nahi main apne dil ki saari baatein words mein kabhi samjha bhi paunga ya nahi, lekin aaj aapke birthday par kuch kehna chahta hoon.</p>
+          <p>Jaanu, mujhe nahi pata ki mera ye chhota sa surprise dekhkar aap khush hongi ya nahi, lekin maine ise banane mein apni saari feelings daal di hain. Shayad main aapko har baar woh khushi nahi de paaya jo aap deserve karti hain, shayad mujhse bahut si galtiyan bhi hui hain. Lekin aaj dil se apni har galti ke liye aapse maafi maangta hoon. ❤️</p>
+          <p>Kabhi-kabhi sochta hoon ki aap meri life mein kitni special ho. Aapke saath chhoti-chhoti baatein karna, aapko pareshan karna, aapki smile ki wajah banna aur aapke saath apne future ke sapne dekhna... ye sab mere liye bahut precious hai.</p>
+          <p>Main koi perfect insaan nahi hoon, Jaanu. Mujhse galtiyan hongi, kabhi main galat bhi ho sakta hoon, lekin main apni galtiyon ko samajhna aur khud ko behtar banana chahta hoon.</p>
+          <p>Aaj aap 18 ki ho gayi ho! 🥹❤️ Aapki life ka ek naya chapter shuru ho raha hai. Meri dil se dua hai ki aapke har sapne poore hon, aapko duniya ki saari khushiyan milein aur aapki aankhon mein hamesha khushi ho.</p>
+          <p>Ek baat kehna chahta hoon...</p>
+          <p>Mujhe aapse koi badi cheez nahi chahiye. Bas humare beech pyaar ke saath understanding, respect aur trust bana rahe. Zindagi mein kitni bhi problems aayein, hum ek-doosre ko samajhne ki koshish karein.</p>
+          <p>Main aapko sirf aaj nahi, balki aane wale har birthday par wish karna chahta hoon. Aapki khushiyon ka hissa banna chahta hoon aur aapke saath bahut saari beautiful memories banana chahta hoon.</p>
+          <p>Happy Birthday meri Riya Jaanu! 🎀</p>
+          <p>Aap meri pasandida insaan ho, meri favourite feeling ho aur meri life ki ek bahut khoobsurat kahani ho.</p>
+          <p>I LOVE YOU JI! ❤️</p>
+          <p>Hamesha khush rehna meri Jaanu.</p>
           
-          <svg id="heartIcon" class="w-16 h-16 text-rose-pink transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-          <span class="font-cinzel text-[11px] font-bold tracking-widest text-gold-light uppercase pt-2">Hold to Sync</span>
-        </button>
-      </div>
+          <div class="letter-signature">
+            Aapka Pagla Diwana,<br>
+            Krishna Betu ❤️🫶
+          </div>
+        </div>
 
-      <!-- Live Heartbeat Counter Feedback -->
-      <div id="bpmCounter" class="text-xs font-cinzel text-gold-mid tracking-wider opacity-60">
-        BPM: <span id="bpmValue">72</span> • STATUS: WAITING
+        <button class="btn-action" onclick="goToStage(4)">Explore Our Memory Gallery 📸 →</button>
       </div>
+    </section>
 
-      <!-- FINAL KEEPSAKE CREST CARD -->
-      <div id="finalKeepsakeCard" class="w-full glass-velvet rounded-2xl p-6 border-gold-glow space-y-3 opacity-0 transform translate-y-6 transition-all duration-700">
-        <span class="font-cinzel text-[10px] tracking-[0.3em] text-gold-mid uppercase">Official Birthday Crest</span>
-        <h3 class="font-cinzel text-xl font-bold text-white">Riya Jaanu × Krishna Betu</h3>
-        <p class="font-cormorant italic text-lg text-rose-pink">"Forever & Always • 18th Birthday Edition"</p>
-        <p class="text-xs font-sans text-gold-light/70 pt-1">
-          Thank you for being Krishna Betu's favourite human! Happy Birthday Jaanu! ❤️
-        </p>
+    <!-- STAGE 4: MEMORY GALLERY -->
+    <section id="stage-4" class="stage">
+      <div class="card">
+        <span class="badge-header">STAGE 4 • OUR MEMORIES</span>
+        <h2 class="title-display">Our Love Gallery 📸</h2>
+        <p class="subtitle-text">Tap frame to upload your favorite photos with Krishna!</p>
+
+        <div class="gallery-grid">
+          <!-- Hero Slot -->
+          <div class="gallery-item hero" id="slot-0" onclick="triggerUpload(0)">
+            <img id="img-0" alt="Memory 1">
+            <div class="placeholder-ui">
+              <span style="font-size:24px;">👑</span>
+              <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Main Romantic Memory</p>
+            </div>
+            <button class="change-btn" onclick="event.stopPropagation(); triggerUpload(0)">✏️ Change</button>
+          </div>
+
+          <!-- Slots 1 - 4 -->
+          <div class="gallery-item" id="slot-1" onclick="triggerUpload(1)">
+            <img id="img-1" alt="Memory 2">
+            <div class="placeholder-ui">
+              <span style="font-size:20px;">💖</span>
+              <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Cute Moment</p>
+            </div>
+            <button class="change-btn" onclick="event.stopPropagation(); triggerUpload(1)">✏️ Change</button>
+          </div>
+
+          <div class="gallery-item" id="slot-2" onclick="triggerUpload(2)">
+            <img id="img-2" alt="Memory 3">
+            <div class="placeholder-ui">
+              <span style="font-size:20px;">🌸</span>
+              <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Sweet Smile</p>
+            </div>
+            <button class="change-btn" onclick="event.stopPropagation(); triggerUpload(2)">✏️ Change</button>
+          </div>
+
+          <div class="gallery-item" id="slot-3" onclick="triggerUpload(3)">
+            <img id="img-3" alt="Memory 4">
+            <div class="placeholder-ui">
+              <span style="font-size:20px;">✨</span>
+              <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Special Day</p>
+            </div>
+            <button class="change-btn" onclick="event.stopPropagation(); triggerUpload(3)">✏️ Change</button>
+          </div>
+
+          <div class="gallery-item" id="slot-4" onclick="triggerUpload(4)">
+            <img id="img-4" alt="Memory 5">
+            <div class="placeholder-ui">
+              <span style="font-size:20px;">🎁</span>
+              <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Forever Love</p>
+            </div>
+            <button class="change-btn" onclick="event.stopPropagation(); triggerUpload(4)">✏️ Change</button>
+          </div>
+        </div>
+
+        <input type="file" id="file-input" accept="image/*" style="display:none;" onchange="handleFileSelected(event)">
+
+        <button class="btn-action" onclick="goToStage(5)">Plan Our Dream VIP Date 🥂 →</button>
       </div>
+    </section>
 
+    <!-- STAGE 5: VIP DATE PLANNER -->
+    <section id="stage-5" class="stage">
+      <div class="card">
+        <span class="badge-header">STAGE 5 • VIP DATE QUIZ</span>
+        <h2 class="title-display">Design Our VIP Date 🥂</h2>
+        <p class="subtitle-text">Answer 3 questions to generate your official VIP Pass!</p>
+
+        <div id="date-quiz-box">
+          <p style="font-weight:600; color:var(--gold-light); margin-bottom:10px;">1. Ideal Date Location?</p>
+          <button class="btn-option date-opt-1" onclick="selectDateOpt(1, 'Romantic Candlelight Dinner 🕯️', this)">Romantic Candlelight Dinner 🕯️</button>
+          <button class="btn-option date-opt-1" onclick="selectDateOpt(1, 'Sunset Beach Walk 🌅', this)">Sunset Beach Walk 🌅</button>
+          <button class="btn-option date-opt-1" onclick="selectDateOpt(1, 'Stargazing under the Sky ✨', this)">Stargazing under the Sky ✨</button>
+          <button class="btn-option date-opt-1" onclick="selectDateOpt(1, 'Kahin nahi! Pehle Class 12 complete karo 😂', this)">Kahin nahi! Pehle Class 12 complete karo 😂</button>
+
+          <p style="font-weight:600; color:var(--gold-light); margin:16px 0 10px 0;">2. Late Night Food Craving?</p>
+          <button class="btn-option date-opt-2" onclick="selectDateOpt(2, 'Momos & Chai 🥟', this)">Momos & Chai 🥟</button>
+          <button class="btn-option date-opt-2" onclick="selectDateOpt(2, 'Pizza & Cold Coffee 🍕', this)">Pizza & Cold Coffee 🍕</button>
+          <button class="btn-option date-opt-2" onclick="selectDateOpt(2, 'Chocolates & Ice Cream 🍦', this)">Chocolates & Ice Cream 🍦</button>
+          <button class="btn-option date-opt-2" onclick="selectDateOpt(2, 'Krishna ka dimaag 🧠', this)">Krishna ka dimaag 🧠</button>
+
+          <p style="font-weight:600; color:var(--gold-light); margin:16px 0 10px 0;">3. Favorite Surprise Activity?</p>
+          <button class="btn-option date-opt-3" onclick="selectDateOpt(3, 'Long Drive with Slow Songs 🚗', this)">Long Drive with Slow Songs 🚗</button>
+          <button class="btn-option date-opt-3" onclick="selectDateOpt(3, 'Midnight Hugs & Kisses 🫂', this)">Midnight Hugs & Kisses 🫂</button>
+          <button class="btn-option date-opt-3" onclick="selectDateOpt(3, 'Unlimited Shopping Spree 🛍️', this)">Unlimited Shopping Spree 🛍️</button>
+          <button class="btn-option date-opt-3" onclick="selectDateOpt(3, 'Har roz pareshan karna 😜', this)">Har roz pareshan karna 😜</button>
+        </div>
+
+        <div id="vip-pass-result" style="display:none;">
+          <div class="vip-pass">
+            <h3 style="color:var(--gold-light); font-family:var(--font-display); font-size:18px; margin-bottom:12px;">ROYAL VIP DATE PASS</h3>
+            <p style="font-size:13px; color:var(--text-muted);">GUEST OF HONOR: <strong style="color:#fff;">RIYA JAANU</strong></p>
+            <p style="font-size:13px; color:var(--text-muted);">HOSTED BY: <strong style="color:#fff;">KRISHNA BETU</strong></p>
+            <hr style="border:none; border-top:1px dashed var(--border-gold); margin:12px 0;">
+            <p style="font-size:12.5px; color:var(--gold-primary);">📍 Location: <span id="pass-loc" style="color:#fff;">-</span></p>
+            <p style="font-size:12.5px; color:var(--gold-primary);">🍔 Food Craving: <span id="pass-food" style="color:#fff;">-</span></p>
+            <p style="font-size:12.5px; color:var(--gold-primary);">🎁 Activity: <span id="pass-act" style="color:#fff;">-</span></p>
+          </div>
+        </div>
+
+        <button class="btn-action" id="btn-generate-pass" onclick="generateVIPPass()">Generate VIP Date Pass 🎫</button>
+        <button class="btn-action" id="btn-next-5" style="display:none;" onclick="goToStage(6)">18 Reasons Why I Love You 💖 →</button>
+      </div>
+    </section>
+
+    <!-- STAGE 6: 18 REASONS WHY KRISHNA LOVES RIYA -->
+    <section id="stage-6" class="stage">
+      <div class="card">
+        <span class="badge-header">STAGE 6 • 18 REASONS</span>
+        <h2 class="title-display">18 Reasons Why I Love You 💖</h2>
+        <p class="subtitle-text">Tap cards to unlock all 18 secrets (<span id="reasons-count">0</span>/18)</p>
+
+        <div class="reasons-grid" id="reasons-container">
+          <!-- RENDERED BY JS -->
+        </div>
+
+        <button class="btn-action" onclick="goToStage(7)">Scan Love Compatibility ⚡ →</button>
+      </div>
+    </section>
+
+    <!-- STAGE 7: QUANTUM LOVE COMPATIBILITY SCANNER -->
+    <section id="stage-7" class="stage">
+      <div class="card">
+        <span class="badge-header">STAGE 7 • LOVE SCANNER</span>
+        <h2 class="title-display">Compatibility Scanner ⚡</h2>
+        <p class="subtitle-text">Analyzing soul connection between Riya & Krishna...</p>
+
+        <div class="scanner-box">
+          <div class="scanner-circle" id="scan-circle">
+            <span class="scan-val" id="scan-val">0%</span>
+          </div>
+          <p id="scan-status" style="font-size:14px; color:var(--gold-primary); font-weight:600;">Tap button to initiate scan...</p>
+        </div>
+
+        <button class="btn-action" id="btn-start-scan" onclick="startScanner()">Start Quantum Scan 🛰️</button>
+        <button class="btn-action" id="btn-next-7" style="display:none;" onclick="goToStage(8)">Open Riya's Birthday Wish Jar 🫙 →</button>
+      </div>
+    </section>
+
+    <!-- STAGE 8: WISH JAR -->
+    <section id="stage-8" class="stage">
+      <div class="card">
+        <span class="badge-header">STAGE 8 • BIRTHDAY WISH JAR</span>
+        <h2 class="title-display">Riya's Birthday Wish Jar 🫙</h2>
+        <p class="subtitle-text">Tap capsules to pop open Krishna's blessings for your 18th!</p>
+
+        <div class="jar-grid" id="jar-container">
+          <!-- RENDERED BY JS -->
+        </div>
+
+        <button class="btn-action" onclick="goToStage(9)">Sync Our Heartbeats 💓 →</button>
+      </div>
+    </section>
+
+    <!-- STAGE 9: BIOMETRIC HEARTBEAT SYNC -->
+    <section id="stage-9" class="stage">
+      <div class="card">
+        <span class="badge-header">STAGE 9 • BIOMETRIC SYNC</span>
+        <h2 class="title-display">Biometric Heartbeat Sync 💓</h2>
+        <p class="subtitle-text">Press and hold thumb for 2.5s to sync hearts with Krishna!</p>
+
+        <div class="biometric-area">
+          <div class="thumb-print" id="thumb-scanner" oncontextmenu="return false;">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 1c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 17c-.47.58-.37 1.42.21 1.89.58.47 1.42.37 1.89-.21l.82-.99C8.49 18.44 10.18 19 12 19c1.82 0 3.51-.56 4.73-1.31l.82.99c.47.58 1.31.68 1.89.21.58-.47.68-1.31.21-1.89l-.62-1.39C20.26 14.07 21 12.12 21 10c0-4.97-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/>
+            </svg>
+            <svg class="progress-ring">
+              <circle id="hold-progress-circle" cx="61" cy="61" r="58"/>
+            </svg>
+          </div>
+          <p id="biometric-status" style="font-size:13.5px; color:var(--text-muted); margin-top:16px;">Hold thumb firmly inside ring...</p>
+        </div>
+
+        <button class="btn-action" id="btn-next-9" style="display:none;" onclick="goToStage(10)">Claim Royal Love Certificate 👑 →</button>
+      </div>
+    </section>
+
+    <!-- STAGE 10: ROYAL CERTIFICATE & REPLY HUB -->
+    <section id="stage-10" class="stage">
+      <div class="card">
+        <span class="badge-header">STAGE 10 • ETERNAL LOVE CERTIFICATE</span>
+        
+        <div class="certificate-card">
+          <p style="font-size:10px; letter-spacing:3px; color:var(--gold-primary); font-weight:700;">OFFICIAL KEEPSAKE</p>
+          <h2 style="font-family:var(--font-display); font-size:22px; color:var(--gold-light); margin:8px 0;">Certificate of Eternal Love</h2>
+          <p style="font-size:12px; color:var(--text-muted);">PROUDLY PRESENTED TO</p>
+          <h3 style="font-size:20px; color:#fff; font-family:var(--font-display); margin:4px 0;">RIYA JAANU</h3>
+          <p style="font-size:11px; color:var(--gold-primary);">(@honey_blush_z)</p>
+          
+          <p style="font-size:13px; color:#ddd; margin:16px 0 8px 0; line-height:1.6;">
+            On your 18th Birthday (24 November), you are hereby certified as Krishna Betu's favorite person, favorite feeling, and forever lifetime partner! ❤️
+          </p>
+
+          <p style="font-size:12px; color:var(--gold-light); font-style:italic;">
+            Issued by Krishna Betu (@lx.imp & @imp.iz)
+          </p>
+        </div>
+
+        <div style="margin-top:24px;">
+          <h3 style="font-size:16px; color:var(--gold-light); text-align:center; margin-bottom:12px;">Send Your Sweet Reply to Krishna 💬</h3>
+          
+          <button class="btn-action" onclick="copyReplyMessage()">1-Click Copy Reply Text 📋</button>
+          <button class="btn-action" style="background:#25D366; color:#fff;" onclick="sendWhatsAppReply()">Reply on WhatsApp 💬</button>
+          <button class="btn-action" style="background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color:#fff;" onclick="sendInstagramReply('lx.imp')">DM Krishna (@lx.imp) 📸</button>
+          <button class="btn-action" style="background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color:#fff;" onclick="sendInstagramReply('imp.iz')">DM Krishna (@imp.iz) 📸</button>
+        </div>
+      </div>
     </section>
 
   </main>
 
-  <!-- LIGHTBOX MODAL FOR GALLERY ZOOM -->
-  <div id="lightboxModal" class="fixed inset-0 z-50 bg-obsidian/95 backdrop-blur-md flex flex-col items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-gold-light border border-gold-mid/40 rounded-full p-2 hover:bg-gold-mid/20 transition-all z-50" aria-label="Close Modal">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-    <div class="max-w-3xl max-h-[80vh] rounded-2xl overflow-hidden border-2 border-gold-glow shadow-2xl">
-      <img id="lightboxImg" src="" class="w-full h-full object-contain max-h-[80vh]" alt="Enlarged View" />
-    </div>
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-notification">Notification</div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox-modal" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Enlarged Memory">
+    <p style="color:var(--text-muted); font-size:12px; margin-top:12px;">Tap anywhere to close</p>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
   <script>
-    /* ================= 1. STATE & HISTORY NAVIGATION ================= */
+    /* ==========================================================================
+       GLOBAL STATE & APPLICATION ENGINE
+       ========================================================================== */
     let currentStage = 1;
+    let quizStep = 0;
     let audioCtx = null;
-    let isSoundMuted = true;
-    let heartbeatInterval = null;
-    let isCandlesBlown = false;
+    let isMuted = false;
+    let dateSelections = { loc: '', food: '', act: '' };
+    let revealedReasonsCount = 0;
+    let uploadedImages = [null, null, null, null, null];
+    let currentUploadIndex = 0;
 
-    // Push initial history state
-    window.history.replaceState({ stage: 1 }, '', '');
+    // QUIZ DATA WITH EXACT QUESTIONS AND FUNNY PRANKS/TOASTS
+    const quizQuestions = [
+      {
+        q: "😂 QUESTION 1: Riya ji! Ab 18 ki hone wali ho, khud ko samajhdaar samajhne lagi ho kya? 🤣",
+        options: [
+          { text: "1. Haan, obviously 😎", toast: "Accha ji? Phir bhi Krishna ke bina adhoori ho! 😜" },
+          { text: "2. Nahi, abhi bhi bachchi hoon 🥺", toast: "Haan meri chhoti si cutie bachchi! ❤️" },
+          { text: "3. Krishna se toh zyada samajhdaar hoon 😂", toast: "Jhoot mat bolo, Krishna genius hai... bas kabhi-kabhi! 🤣", prank: "wobble" }
+        ]
+      },
+      {
+        q: "🤣 QUESTION 2: Sach-sach batao, Krishna kitna pareshan karta hai?",
+        options: [
+          { text: "1. 100% 😤", toast: "Itnakam? Main 1000% expect kar raha tha! 🤣" },
+          { text: "2. 1000% 🤡", toast: "Sachai bahar aa hi gayi! Lekin Krishna ka pyaar bhi 10000% hai! ❤️" },
+          { text: "3. Phir bhi cute hai ❤️", toast: "Awww! Riya ko Krishna cute laga, note kar lo duniya walo! 🥹" }
+        ]
+      },
+      {
+        q: "😜 QUESTION 3: Agar Krishna ek din ke liye gayab ho jaye toh?",
+        options: [
+          { text: "1. Finally sukoon 😂", toast: "Sacchai mat bolo, rona aayega badme! 😜", prank: "swap" },
+          { text: "2. Kahan gaya mera pagal? 🥺", toast: "Idhar hi hai aapka pagal, kahi nahi jayega! ❤️" },
+          { text: "3. Police complaint karungi 🚔", toast: "Inspector bolega: Yeh to Krishna ka official arrest warrant hai! 😂" }
+        ]
+      },
+      {
+        q: "🤭 QUESTION 4: Kya aapko pata hai ki aapka boyfriend thoda sa pagal hai?",
+        options: [
+          { text: "1. Thoda nahi, poora pagal 🤣", toast: "Poora pagal, sirf aapke pyaar mein! ❤️" },
+          { text: "2. Mujhe pehle se pata hai 😂", toast: "Smart girl! Pehle se hi alert thi! 😜" },
+          { text: "3. Phir bhi mera hai ❤️", toast: "Hamesha aapka hi rahega Jaanu! 🥹" }
+        ]
+      },
+      {
+        q: "🎁 QUESTION 5: 18th birthday par kya gift chahiye?",
+        options: [
+          { text: "1. iPhone 📱", toast: "Krishna ka balance check ho raha hai... Error: 0.00 ₹ 😂" },
+          { text: "2. Diamond ring 💍", toast: "Shaadi ke waqt pakka! Abhi kiss se kaam chala lo 😜" },
+          { text: "3. Unlimited shopping 🛍️", toast: "Krishna kidnaps credit card... Error 404 funds missing! 🤣" },
+          { text: "4. Krishna ka dimaag 🧠", toast: "Error 404: Jo cheez hai hi nahi woh kaise milegi? 🤣" }
+        ]
+      },
+      {
+        q: "😂 QUESTION 6: Agar Krishna bole ki woh bahut handsome hai toh?",
+        options: [
+          { text: "1. Sapne dekhna band karo 🤣", toast: "Mirror jhoot nahi bolta ji! 😜" },
+          { text: "2. Haan, mere liye ❤️", toast: "Bas aapke liye hi handsome banana chahta hoon! 🥰" },
+          { text: "3. Doctor ko dikhao 😂", toast: "Doctor ne bola hai: Riya se pyaar ki bimari hai! 🩺❤️" }
+        ]
+      },
+      {
+        q: "🥹 QUESTION 7: Kya Krishna ki saari bakwaas zindagi bhar sun sakti ho?",
+        options: [
+          { text: "1. Majboori hai 😭", toast: "Majboori nahi, yeh to pure romantic love hai! 😜" },
+          { text: "2. Haan pagal ❤️", toast: "Zindagi bhar bakwaas guarantee hai! 🥹❤️" },
+          { text: "3. Network error! 📵", toast: "No escape! Lifetime network connected! 📶❤️", prank: "shake" }
+        ]
+      },
+      {
+        q: "🤣 QUESTION 8: Kya apne boyfriend ko sudharne ka lifetime contract logi?",
+        options: [
+          { text: "1. Lifetime contract 😂", toast: "Contract Signed! No refunds available! 📝❤️" },
+          { text: "2. Iska kuch nahi ho sakta 🤡", toast: "Mission Impossible, lekin try karte raho! 🤣" },
+          { text: "3. Pehle khud sudhro! 😭", toast: "Dono hi pagal hain, matches made in heaven! 😂" }
+        ]
+      },
+      // Special System Warning Card Step (quizStep === 8)
+      { isWarningCard: true },
+      // Question 9 (quizStep === 9)
+      {
+        q: "💰 FINAL QUESTION: Agar Krishna aur 1 crore rupaye mein se kisi ek ko choose karna pade toh?",
+        options: [
+          { text: "1. Krishna ❤️", toast: "Correct Answer! Krishna ki value 1000 Crore hai! 🥹❤️" },
+          { text: "2. 1 Crore 💸", toast: "1 Crore khatam ho jayega, Krishna unlimited hai! 😜", prank: "goldDodge" },
+          { text: "3. Dono chahiye, bewakoof! 🤣", toast: "Smart girl! Krishna + 1 Crore dono tumhare! 😂❤️" }
+        ]
+      },
+      // Final Greeting Card (quizStep === 10)
+      { isFinalGreetingCard: true }
+    ];
 
-    // Handle Browser / Mobile Android Back Button
-    window.onpopstate = function(event) {
-      // If Lightbox is open, close it first
-      const lightbox = document.getElementById('lightboxModal');
-      if (!lightbox.classList.contains('hidden')) {
-        closeLightbox(false);
+    // 18 REASONS DATA
+    const reasonsData = [
+      "1. Aapki smile mere din ko roshan kar deti hai! 😊",
+      "2. Jab aap gussa hoti ho toh aur bhi cute lagti ho! 😤❤️",
+      "3. Aap Krishna ke har pagalpan ko bardasht karti ho! 🤡",
+      "4. Aapki aawaaz sunkar mera saara stress khatam ho jata hai! 🎵",
+      "5. Aap mere bina bole hi mere dil ki baat samajh jaati ho! 💖",
+      "6. Aapki aankhein sabse khoobsurat hain! 👀✨",
+      "7. Aap Krishna ki sabse badi strength aur weakness ho! 💪❤️",
+      "8. Aapke saath har chhoti baat special lagti hai! 🌸",
+      "9. Aap mujhe behad pyaar karti ho, chahe kitna bhi pareshan karoon! 😜",
+      "10. Aap meri life ki sabse khoobsurat gift ho! 🎁",
+      "11. Aapke saath future ke sapne dekhna sabse pasand hai! 🌙",
+      "12. Aap Krishna ki life mein sukoon laati ho! 🌊",
+      "13. Aapki nadaniyan aur bachpana sabse cute hain! 🥺",
+      "14. Aap hamesha mera khayal rakhti ho! 🩺❤️",
+      "15. Aap meri pasandida insaan ho! 👑",
+      "16. Aapki har baat dil ko chhu jaati hai! 💌",
+      "17. Aap Krishna ko ek behtar insaan banati ho! 🌟",
+      "18. Main aapko har birthday par wish karna chahta hoon forever! 🎂❤️"
+    ];
+
+    // 6 WISH CAPSULES DATA
+    const wishData = [
+      "🌟 May your 18th year bring all your dreams into reality!",
+      "📚 Dual victory: Class 12 topper & forever happy Jaanu!",
+      "💎 Lifetime supply of endless smiles, chocolates & hugs!",
+      "✈️ Dream trips & long drives with your Pagla Krishna!",
+      "🛡️ Always stay protected from bad vibes & tears!",
+      "💖 Infinite love, trust & understanding between us forever!"
+    ];
+
+    /* ==========================================================================
+       INITIALIZATION & HISTORY ENGINE
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Initialize History State
+      history.replaceState({ stage: 1 }, '', '');
+      renderQuizStep();
+      renderReasons();
+      renderWishJar();
+      initCanvas();
+    });
+
+    window.onpopstate = (e) => {
+      if (document.getElementById('lightbox-modal').classList.contains('active')) {
+        closeLightbox(true);
         return;
       }
-
-      if (event.state && event.state.stage) {
-        switchStage(event.state.stage, false);
-      } else {
-        switchStage(1, false);
+      if (e.state && e.state.stage) {
+        showStageUI(e.state.stage);
       }
     };
 
     function goToStage(stageNum) {
-      if (stageNum === currentStage) return;
-      window.history.pushState({ stage: stageNum }, '', '');
-      switchStage(stageNum, true);
-    }
-
-    function navigateBack() {
-      if (currentStage > 1) {
-        window.history.back();
-      }
-    }
-
-    function switchStage(stageNum, animate = true) {
+      if (stageNum < 1 || stageNum > 10) return;
       currentStage = stageNum;
+      history.pushState({ stage: stageNum }, '', '');
+      showStageUI(stageNum);
+    }
 
-      // Update Navigation Back Button visibility
-      const backBtn = document.getElementById('navBackBtn');
-      if (stageNum > 1) {
-        backBtn.classList.remove('opacity-0', 'pointer-events-none');
-      } else {
-        backBtn.classList.add('opacity-0', 'pointer-events-none');
-      }
-
-      // Update Top Nav Dots
-      for (let i = 1; i <= 4; i++) {
-        const dot = document.getElementById(`dot${i}`);
-        if (i === stageNum) {
-          dot.className = "w-2.5 h-2.5 rounded-full bg-gold-mid transition-all duration-500 scale-125 shadow-[0_0_8px_#E5C17B]";
-        } else {
-          dot.className = "w-2 h-2 rounded-full bg-gold-mid/30 transition-all duration-500";
-        }
-      }
-
-      // Hide all stages
-      [1, 2, 3, 4].forEach(n => {
-        const sec = document.getElementById(`stage${n}`);
-        sec.classList.add('hidden', 'opacity-0');
-      });
-
-      // Show target stage
-      const targetSec = document.getElementById(`stage${stageNum}`);
-      targetSec.classList.remove('hidden');
-      setTimeout(() => {
-        targetSec.classList.remove('opacity-0');
-      }, 50);
-
+    function showStageUI(stageNum) {
+      currentStage = stageNum;
+      document.querySelectorAll('.stage').forEach(el => el.classList.remove('active'));
+      document.getElementById(`stage-${stageNum}`).classList.add('active');
+      document.getElementById('stage-tag-display').textContent = `STAGE ${stageNum} / 10`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    /* ================= 2. STAGE 1 DODGING NO BUTTON LOGIC ================= */
-    const noBtn = document.getElementById('noBtn');
-    const noPromptText = document.getElementById('noPromptText');
-    const prompts = [
-      "Arre Aise Mat Karo Jaanu! 🥺",
-      "Soch Lo Ek Baar Dobara! 💖",
-      "Krishna Betu Ro Dega Par! 😭",
-      "Pakka Na? Sacchi? 💔",
-      "Ab Toh YES Kehna Hi Padega! 😁"
-    ];
-    let promptIdx = 0;
+    function handleBackClick() {
+      if (currentStage > 1) {
+        history.back();
+      } else {
+        showToast("Aap Stage 1 par hi ho ji! 😜");
+      }
+    }
 
-    function dodgeNoButton() {
-      const x = (Math.random() - 0.5) * 160;
-      const y = (Math.random() - 0.5) * 80;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    /* ==========================================================================
+       STAGE 1: QUIZ ENGINE WITH FUNNY PRANKS & TOASTS
+       ========================================================================== */
+    function renderQuizStep() {
+      const container = document.getElementById('quiz-container');
+      const progressFill = document.getElementById('quiz-progress');
+      const stepData = quizQuestions[quizStep];
+
+      // Update progress bar width
+      const totalSteps = quizQuestions.length;
+      progressFill.style.width = `${((quizStep + 1) / totalSteps) * 100}%`;
+
+      if (stepData.isWarningCard) {
+        container.innerHTML = `
+          <div style="background:rgba(255,77,121,0.1); border:1px dashed var(--rose-primary); border-radius:16px; padding:20px; margin-bottom:16px;">
+            <p style="color:var(--rose-primary); font-weight:700; font-size:14px; margin-bottom:10px;">⚠️ SYSTEM WARNING!</p>
+            <p style="font-size:13.5px; color:#fff; margin-bottom:14px;">Riya detected! Your cuteness has overloaded Krishna's brain! 🤯❤️</p>
+            
+            <p style="color:var(--gold-primary); font-weight:700; font-size:14px; margin-bottom:6px;">📰 BREAKING NEWS:</p>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:14px;">Riya officially 18 ki hone wali hai! Krishna ka bank balance zero hai, lekin drama unlimited hai! 😂</p>
+            
+            <p style="color:#fff; font-weight:700; font-size:14px; margin-bottom:6px;">🔐 SECRET MESSAGE UNLOCKED:</p>
+            <p style="font-size:13px; color:var(--gold-light); line-height:1.6;">
+              Congratulations! Aapne Krishna ki lifetime subscription unlock kar li hai!<br>
+              <strong>Features:</strong><br>
+              • Unlimited bakwaas 🤣<br>
+              • Daily pareshani 😂<br>
+              • Unlimited care ❤️<br>
+              • No cancellation available! 😜
+            </p>
+          </div>
+          <button class="btn-action" onclick="advanceQuiz()">Proceed to Final Question 💰 →</button>
+        `;
+        return;
+      }
+
+      if (stepData.isFinalGreetingCard) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:10px 0;">
+            <span style="font-size:40px;">🎂</span>
+            <h2 class="title-display" style="margin-top:10px;">HAPPY 18TH BIRTHDAY RIYA! ❤️</h2>
+            <p style="font-size:14px; color:var(--gold-light); line-height:1.7; margin-bottom:20px;">
+              Aapki life ka naya chapter khushiyon, dreams aur beautiful memories se bhara rahe.<br><br>
+              <strong>Your Pagla Diwana Krishna 😁😁</strong>
+            </p>
+            <button class="btn-action" onclick="goToStage(2)">Cut Your 18th Birthday Cake 🎂 →</button>
+          </div>
+        `;
+        return;
+      }
+
+      // Normal Question Render
+      let html = `<h3 style="font-family:var(--font-display); font-size:18px; color:var(--gold-light); margin-bottom:16px; line-height:1.4;">${stepData.q}</h3>`;
       
-      noPromptText.innerText = prompts[promptIdx];
-      noPromptText.classList.remove('opacity-0');
-      promptIdx = (promptIdx + 1) % prompts.length;
+      stepData.options.forEach((opt, idx) => {
+        html += `
+          <button class="btn-option" id="quiz-opt-${idx}" onclick="handleQuizOptionClick(${idx})">
+            <span>${opt.text}</span>
+          </button>
+        `;
+      });
+
+      container.innerHTML = html;
     }
 
-    noBtn.addEventListener('mouseenter', dodgeNoButton);
-    noBtn.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      dodgeNoButton();
-    });
+    function handleQuizOptionClick(idx) {
+      const stepData = quizQuestions[quizStep];
+      const opt = stepData.options[idx];
+      const btn = document.getElementById(`quiz-opt-${idx}`);
 
-    /* ================= 3. STAGE 2 CAKE & CANDLE BLOW LOGIC ================= */
-    function handleBlowCandles() {
-      if (isCandlesBlown) return;
-      isCandlesBlown = true;
+      // Handle funny button pranks
+      if (opt.prank === 'wobble' && !btn.dataset.swapped) {
+        btn.style.transform = 'translateX(15px) rotate(3deg)';
+        btn.dataset.swapped = 'true';
+        showToast(opt.toast);
+        setTimeout(() => { btn.style.transform = 'none'; }, 400);
+        return;
+      }
 
-      initAudioContext();
-      playBirthdayChimeSound();
+      if (opt.prank === 'swap' && !btn.dataset.swapped) {
+        const otherBtn = document.getElementById('quiz-opt-1');
+        if (otherBtn) {
+          const temp = btn.innerHTML;
+          btn.innerHTML = otherBtn.innerHTML;
+          otherBtn.innerHTML = temp;
+          btn.dataset.swapped = 'true';
+        }
+        showToast("Arey! Option badal gaya! 😂");
+        return;
+      }
 
-      // Hide Flames
-      const flamesGroup = document.getElementById('candleFlamesGroup');
-      const candleHalo = document.getElementById('candleGlowHalo');
-      flamesGroup.style.display = 'none';
-      if (candleHalo) candleHalo.style.display = 'none';
+      if (opt.prank === 'shake') {
+        btn.style.animation = 'flicker 0.1s 4 alternate';
+        showToast(opt.toast);
+        setTimeout(() => { advanceQuiz(); }, 900);
+        return;
+      }
 
-      // Create Smoke SVG Curls
-      const smokeGroup = document.getElementById('smokeGroup');
-      smokeGroup.innerHTML = `
-        <circle cx="130" cy="65" r="4" fill="#E5C17B" class="smoke-particle"/>
-        <circle cx="167" cy="65" r="4" fill="#E5C17B" class="smoke-particle" style="animation-delay: 0.2s;"/>
-        <circle cx="130" cy="60" r="6" fill="#AAA" class="smoke-particle" style="animation-delay: 0.4s;"/>
-        <circle cx="167" cy="60" r="6" fill="#AAA" class="smoke-particle" style="animation-delay: 0.6s;"/>
-      `;
+      if (opt.prank === 'goldDodge' && !btn.dataset.swapped) {
+        btn.style.borderColor = 'var(--gold-primary)';
+        btn.style.background = 'rgba(230,194,128,0.3)';
+        btn.dataset.swapped = 'true';
+        showToast(opt.toast);
+        return;
+      }
 
-      // Update Instruction Text & Hide Blow Button
-      document.getElementById('cakeSubInstruction').innerText = "✨ Candles Blown Out! Read Krishna Betu's Letter Below ❤️ ✨";
-      document.getElementById('blowCandlesBtn').style.display = 'none';
-
-      // Trigger Confetti / Particle Fireworks
-      triggerFireworks();
-
-      // Reveal Letter Card with smooth slide up
-      const letterCard = document.getElementById('letterCard');
-      letterCard.classList.remove('hidden');
+      // Default Option Selection
+      showToast(opt.toast);
+      btn.classList.add('selected');
       setTimeout(() => {
-        letterCard.classList.remove('opacity-0', 'translate-y-8');
-      }, 200);
+        advanceQuiz();
+      }, 700);
     }
 
-    /* ================= 4. STAGE 3 GALLERY NATIVE PICKER & CANVAS COMPRESSION ================= */
-    function handleImageUpload(event, targetImgId) {
+    function advanceQuiz() {
+      if (quizStep < quizQuestions.length - 1) {
+        quizStep++;
+        renderQuizStep();
+      }
+    }
+
+    /* ==========================================================================
+       STAGE 2: CAKE & CANDLE BLOWOUT ENGINE
+       ========================================================================== */
+    function blowCandles() {
+      const flame1 = document.getElementById('flame-1');
+      const flame2 = document.getElementById('flame-2');
+
+      if (!flame1.classList.contains('extinguished')) {
+        flame1.classList.add('extinguished');
+        flame2.classList.add('extinguished');
+        
+        triggerConfetti();
+        playBirthdayChime();
+        showToast("Happy 18th Birthday Riya Jaanu! 🎉🎂");
+
+        document.getElementById('btn-next-2').style.display = 'flex';
+      } else {
+        showToast("Candles are already blown out! Make your wish! ✨");
+      }
+    }
+
+    /* ==========================================================================
+       STAGE 4: PHOTO GALLERY ENGINE
+       ========================================================================== */
+    function triggerUpload(index) {
+      currentUploadIndex = index;
+      document.getElementById('file-input').click();
+    }
+
+    function handleFileSelected(event) {
       const file = event.target.files[0];
       if (!file) return;
 
@@ -744,11 +1335,11 @@ Krishna Betu ❤️🫶😁😁
       reader.onload = function(e) {
         const img = new Image();
         img.onload = function() {
-          // Client-side HTML5 Canvas Compression (Max 800px, JPEG 0.85)
+          // Compress image via Canvas
           const canvas = document.createElement('canvas');
           let width = img.width;
           let height = img.height;
-          const maxDim = 800;
+          const maxDim = 720;
 
           if (width > height && width > maxDim) {
             height = Math.round((height * maxDim) / width);
@@ -763,234 +1354,420 @@ Krishna Betu ❤️🫶😁😁
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, width, height);
 
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
-          document.getElementById(targetImgId).src = compressedDataUrl;
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+          uploadedImages[currentUploadIndex] = compressedDataUrl;
+
+          // Render image in slot
+          const slot = document.getElementById(`slot-${currentUploadIndex}`);
+          const imgEl = document.getElementById(`img-${currentUploadIndex}`);
+          imgEl.src = compressedDataUrl;
+          slot.classList.add('has-img');
+
+          // Attach click to open lightbox
+          slot.onclick = function() {
+            openLightbox(compressedDataUrl);
+          };
+
+          showToast("Photo added to memory frame! 📸");
         };
         img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
 
-    function openLightbox(imgId) {
-      const src = document.getElementById(imgId).src;
-      document.getElementById('lightboxImg').src = src;
-      const modal = document.getElementById('lightboxModal');
-      modal.classList.remove('hidden');
-      setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    function openLightbox(imgSrc) {
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      img.src = imgSrc;
+      modal.classList.add('active');
+      history.pushState({ modal: 'lightbox' }, '', '');
     }
 
-    function closeLightbox(popHistory = true) {
-      const modal = document.getElementById('lightboxModal');
-      modal.classList.add('opacity-0');
-      setTimeout(() => modal.classList.add('hidden'), 300);
+    function closeLightbox(fromPopState = false) {
+      const modal = document.getElementById('lightbox-modal');
+      if (modal.classList.contains('active')) {
+        modal.classList.remove('active');
+        if (!fromPopState) {
+          history.back();
+        }
+      }
     }
 
-    /* ================= 5. STAGE 4 HEARTBEAT SENSOR ================= */
-    let bpmCount = 72;
+    /* ==========================================================================
+       STAGE 5: VIP DATE PASS ENGINE
+       ========================================================================== */
+    function selectDateOpt(qNum, value, btn) {
+      document.querySelectorAll(`.date-opt-${qNum}`).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
 
-    function startHeartbeat(e) {
-      if (e && e.preventDefault) e.preventDefault();
-      initAudioContext();
+      if (qNum === 1) dateSelections.loc = value;
+      if (qNum === 2) dateSelections.food = value;
+      if (qNum === 3) dateSelections.act = value;
+    }
 
-      const shockwave = document.getElementById('shockwaveRing');
-      const heartIcon = document.getElementById('heartIcon');
-      const bpmValue = document.getElementById('bpmValue');
-      const bpmCounter = document.getElementById('bpmCounter');
-
-      shockwave.classList.remove('opacity-0');
-      heartIcon.classList.add('scale-125');
-      bpmCounter.classList.remove('opacity-60');
-      bpmCounter.classList.add('text-rose-pink', 'font-bold');
-
-      if (navigator.vibrate) {
-        navigator.vibrate([80, 100, 80]);
+    function generateVIPPass() {
+      if (!dateSelections.loc || !dateSelections.food || !dateSelections.act) {
+        showToast("Teeno questions ke answer choose karo ji! 😜");
+        return;
       }
 
-      playHeartbeatAudio();
+      document.getElementById('pass-loc').textContent = dateSelections.loc;
+      document.getElementById('pass-food').textContent = dateSelections.food;
+      document.getElementById('pass-act').textContent = dateSelections.act;
 
-      heartbeatInterval = setInterval(() => {
-        bpmCount = Math.min(140, bpmCount + 2);
-        bpmValue.innerText = bpmCount;
-        playHeartbeatAudio();
-        if (navigator.vibrate) navigator.vibrate([60, 80]);
-      }, 700);
+      document.getElementById('date-quiz-box').style.display = 'none';
+      document.getElementById('vip-pass-result').style.display = 'block';
+      document.getElementById('btn-generate-pass').style.display = 'none';
+      document.getElementById('btn-next-5').style.display = 'flex';
 
-      // Reveal Final Keepsake Card after 3 seconds of holding
+      showToast("VIP Date Pass Issued Successfully! 🎫✨");
+    }
+
+    /* ==========================================================================
+       STAGE 6: 18 REASONS ENGINE
+       ========================================================================== */
+    function renderReasons() {
+      const container = document.getElementById('reasons-container');
+      let html = '';
+      reasonsData.forEach((reason, idx) => {
+        html += `
+          <div class="reason-card" id="reason-${idx}" onclick="revealReason(${idx})">
+            <div class="reason-num">REASON #${idx + 1}</div>
+            <div class="reason-text" id="reason-text-${idx}">Tap to reveal secret reason 🔒</div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function revealReason(idx) {
+      const card = document.getElementById(`reason-${idx}`);
+      const text = document.getElementById(`reason-text-${idx}`);
+
+      if (!card.classList.contains('revealed')) {
+        card.classList.add('revealed');
+        text.textContent = reasonsData[idx];
+        revealedReasonsCount++;
+        document.getElementById('reasons-count').textContent = revealedReasonsCount;
+        showToast(`Unlocked Reason #${idx + 1}! ❤️`);
+      }
+    }
+
+    /* ==========================================================================
+       STAGE 7: COMPATIBILITY SCANNER ENGINE
+       ========================================================================== */
+    function startScanner() {
+      const circle = document.getElementById('scan-circle');
+      const val = document.getElementById('scan-val');
+      const status = document.getElementById('scan-status');
+      const btn = document.getElementById('btn-start-scan');
+
+      btn.style.display = 'none';
+      circle.classList.add('scanning');
+      status.textContent = "Scanning soul frequencies...";
+
+      let percent = 0;
+      const interval = setInterval(() => {
+        percent += Math.floor(Math.random() * 45) + 10;
+        if (percent > 1000) {
+          percent = 1000;
+          clearInterval(interval);
+          circle.classList.remove('scanning');
+          val.textContent = "1000%";
+          status.innerHTML = "<span style='color:var(--rose-primary); font-size:16px;'>OVERLOAD! ∞ PERFECT MATCH!</span><br>Krishna & Riya are eternally inseparable! ❤️";
+          document.getElementById('btn-next-7').style.display = 'flex';
+          triggerConfetti();
+        } else {
+          val.textContent = `${percent}%`;
+        }
+      }, 120);
+    }
+
+    /* ==========================================================================
+       STAGE 8: WISH JAR ENGINE
+       ========================================================================== */
+    function renderWishJar() {
+      const container = document.getElementById('jar-container');
+      let html = '';
+      wishData.forEach((wish, idx) => {
+        html += `
+          <div class="capsule" id="capsule-${idx}" onclick="openCapsule(${idx})">
+            <span style="font-size:24px;">💊</span>
+            <p style="font-size:11px; color:var(--gold-primary); margin-top:4px;">Wish #${idx + 1}</p>
+            <p id="capsule-text-${idx}" style="font-size:12px; color:var(--text-muted); display:none; margin-top:8px;"></p>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function openCapsule(idx) {
+      const capsule = document.getElementById(`capsule-${idx}`);
+      const text = document.getElementById(`capsule-text-${idx}`);
+
+      if (!capsule.classList.contains('opened')) {
+        capsule.classList.add('opened');
+        text.textContent = wishData[idx];
+        text.style.display = 'block';
+        showToast(`Wish #${idx + 1} Opened! 🌟`);
+      }
+    }
+
+    /* ==========================================================================
+       STAGE 9: BIOMETRIC HEARTBEAT SYNC ENGINE
+       ========================================================================== */
+    let holdTimer = null;
+    let holdProgress = 0;
+
+    const thumbScanner = document.getElementById('thumb-scanner');
+    const circleProgress = document.getElementById('hold-progress-circle');
+    const bioStatus = document.getElementById('biometric-status');
+
+    function startHold(e) {
+      e.preventDefault();
+      thumbScanner.classList.add('holding');
+      bioStatus.textContent = "Hold steady... Syncing heartbeats...";
+      holdProgress = 0;
+
+      holdTimer = setInterval(() => {
+        holdProgress += 4;
+        const offset = 364 - (364 * holdProgress) / 100;
+        circleProgress.style.strokeDashoffset = offset;
+
+        playHeartbeatSound();
+        if (navigator.vibrate) navigator.vibrate(40);
+
+        if (holdProgress >= 100) {
+          clearInterval(holdTimer);
+          thumbScanner.classList.remove('holding');
+          bioStatus.innerHTML = "<strong style='color:var(--rose-primary); font-size:15px;'>HEARTBEATS SYNCED AT 100%! 💓</strong>";
+          document.getElementById('btn-next-9').style.display = 'flex';
+          triggerConfetti();
+        }
+      }, 100);
+    }
+
+    function endHold() {
+      if (holdProgress < 100) {
+        clearInterval(holdTimer);
+        holdProgress = 0;
+        circleProgress.style.strokeDashoffset = 364;
+        thumbScanner.classList.remove('holding');
+        bioStatus.textContent = "Sync interrupted! Hold for full 2.5s.";
+      }
+    }
+
+    thumbScanner.addEventListener('pointerdown', startHold);
+    thumbScanner.addEventListener('pointerup', endHold);
+    thumbScanner.addEventListener('pointercancel', endHold);
+
+    /* ==========================================================================
+       STAGE 10: REPLY HUB ENGINE
+       ========================================================================== */
+    function getFormattedReplyText() {
+      const dateLoc = dateSelections.loc || 'Candlelight Dinner';
+      const dateFood = dateSelections.food || 'Momos & Chai';
+      const dateAct = dateSelections.act || 'Long Drive';
+
+      return `Happy 18th Birthday to me! 🎂❤️ Krishna, your birthday surprise web app is super cute and hilarious! 🥹\n\nOur VIP Date Choices:\n📍 Location: ${dateLoc}\n🍔 Food: ${dateFood}\n🎁 Activity: ${dateAct}\n\nI love you so much Krishna Betu! Forever yours! ❤️✨`;
+    }
+
+    function copyReplyMessage() {
+      const text = getFormattedReplyText();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("Reply text copied to clipboard! 📋");
+        }).catch(() => {
+          fallbackCopy(text);
+        });
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast("Reply text copied to clipboard! 📋");
+      } catch (err) {
+        showToast("Unable to auto-copy, please send manually!");
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function sendWhatsAppReply() {
+      const text = encodeURIComponent(getFormattedReplyText());
+      window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+
+    function sendInstagramReply(username) {
+      copyReplyMessage();
       setTimeout(() => {
-        const finalCard = document.getElementById('finalKeepsakeCard');
-        finalCard.classList.remove('opacity-0', 'translate-y-6');
-      }, 2500);
+        window.open(`https://ig.me/m/${username}`, '_blank');
+      }, 500);
     }
 
-    function stopHeartbeat(e) {
-      if (e && e.preventDefault) e.preventDefault();
-      clearInterval(heartbeatInterval);
-
-      const shockwave = document.getElementById('shockwaveRing');
-      const heartIcon = document.getElementById('heartIcon');
-      const bpmCounter = document.getElementById('bpmCounter');
-
-      shockwave.classList.add('opacity-0');
-      heartIcon.classList.remove('scale-125');
-      bpmCounter.classList.add('opacity-60');
-      bpmCounter.classList.remove('text-rose-pink', 'font-bold');
-      bpmCount = 72;
-      document.getElementById('bpmValue').innerText = bpmCount;
-    }
-
-    /* ================= 6. WEB AUDIO API SYNTHESIZER ================= */
-    function initAudioContext() {
+    /* ==========================================================================
+       DUAL-ENGINE AUDIO SYSTEM (AUDIO FILE + WEB AUDIO SYNTHESIZER)
+       ========================================================================== */
+    function initAudio() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
       }
     }
 
     function toggleAudio() {
-      initAudioContext();
-      isSoundMuted = !isSoundMuted;
-
-      document.getElementById('audioIconOff').classList.toggle('hidden', !isSoundMuted);
-      document.getElementById('audioIconOn').classList.toggle('hidden', isSoundMuted);
-
-      if (!isSoundMuted) {
-        playRomanticChimePad();
+      initAudio();
+      isMuted = !isMuted;
+      const btn = document.getElementById('btn-music');
+      btn.textContent = isMuted ? "Muted 🔇" : "Music 🎵";
+      
+      if (!isMuted) {
+        playAmbientMelody();
+        showToast("Music Engine Active 🎵");
       }
     }
 
-    function playBirthdayChimeSound() {
-      if (!audioCtx) return;
-      const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99]; // C major arpeggio
-      notes.forEach((freq, idx) => {
+    function playHeartbeatSound() {
+      if (isMuted) return;
+      initAudio();
+      try {
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.12);
-        gain.gain.setValueAtTime(0.15, audioCtx.currentTime + idx * 0.12);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + idx * 0.12 + 0.8);
+        osc.frequency.setValueAtTime(60, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        osc.start(audioCtx.currentTime + idx * 0.12);
-        osc.stop(audioCtx.currentTime + idx * 0.12 + 0.85);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.15);
+      } catch(e) {}
+    }
+
+    function playBirthdayChime() {
+      if (isMuted) return;
+      initAudio();
+      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      notes.forEach((freq, idx) => {
+        try {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.12);
+          gain.gain.setValueAtTime(0.2, audioCtx.currentTime + idx * 0.12);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + idx * 0.12 + 0.8);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(audioCtx.currentTime + idx * 0.12);
+          osc.stop(audioCtx.currentTime + idx * 0.12 + 0.8);
+        } catch(e) {}
       });
     }
 
-    function playHeartbeatAudio() {
-      if (!audioCtx || isSoundMuted) return;
-      // Low frequency thump sound
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(60, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.15);
-      
-      gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.18);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.2);
+    function playAmbientMelody() {
+      if (isMuted) return;
+      initAudio();
+      // Romantic ambient chords synth
+      const chord = [261.63, 329.63, 392.00, 493.88]; // C maj7
+      chord.forEach(freq => {
+        try {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 3.0);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 3.0);
+        } catch(e) {}
+      });
     }
 
-    function playRomanticChimePad() {
-      if (!audioCtx || isSoundMuted) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3.0);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 3.0);
+    /* ==========================================================================
+       TOAST SYSTEM
+       ========================================================================== */
+    let toastTimeout = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast-notification');
+      toast.textContent = message;
+      toast.classList.add('show');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
     }
 
-    /* ================= 7. CANVAS PARTICLES & FIREWORKS ================= */
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let fireworks = [];
+    /* ==========================================================================
+       CONFETTI CANVAS ENGINE
+       ========================================================================== */
+    let canvas, ctx, particles = [];
+
+    function initCanvas() {
+      canvas = document.getElementById('confetti-canvas');
+      ctx = canvas.getContext('2d');
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+    }
 
     function resizeCanvas() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      ctx.scale(dpr, dpr);
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // Background Floating Gold Dust Particles
-    for (let i = 0; i < 45; i++) {
-      particles.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        r: Math.random() * 2 + 0.5,
-        speedY: Math.random() * 0.4 + 0.1,
-        opacity: Math.random() * 0.6 + 0.2
-      });
+      if (!canvas) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
 
-    function triggerFireworks() {
-      const colors = ['#E5C17B', '#FCF6BA', '#FB7185', '#E11D48'];
-      for (let i = 0; i < 70; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 6 + 2;
-        fireworks.push({
-          x: window.innerWidth / 2,
-          y: window.innerHeight * 0.4,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
+    function triggerConfetti() {
+      particles = [];
+      const colors = ['#e6c280', '#ff4d79', '#fbe5b4', '#ffffff'];
+      for (let i = 0; i < 90; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 14,
+          vy: (Math.random() - 0.7) * 16,
+          size: Math.random() * 6 + 4,
           color: colors[Math.floor(Math.random() * colors.length)],
-          life: 1,
-          decay: Math.random() * 0.02 + 0.015,
-          size: Math.random() * 3 + 1.5
+          alpha: 1,
+          decay: Math.random() * 0.015 + 0.008
         });
       }
+      requestAnimationFrame(updateConfetti);
     }
 
-    function animateParticles() {
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    function updateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let active = false;
 
-      // Render Ambient Gold Dust
       particles.forEach(p => {
-        p.y -= p.speedY;
-        if (p.y < 0) p.y = window.innerHeight;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(229, 193, 123, ${p.opacity})`;
-        ctx.fill();
+        if (p.alpha > 0) {
+          active = true;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.3; // gravity
+          p.alpha -= p.decay;
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.alpha);
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
       });
 
-      // Render Celebration Fireworks Particles
-      for (let i = fireworks.length - 1; i >= 0; i--) {
-        const f = fireworks[i];
-        f.x += f.vx;
-        f.y += f.vy;
-        f.vy += 0.08; // Gravity
-        f.life -= f.decay;
-
-        if (f.life <= 0) {
-          fireworks.splice(i, 1);
-          continue;
-        }
-
-        ctx.beginPath();
-        ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
-        ctx.fillStyle = f.color;
-        ctx.globalAlpha = f.life;
-        ctx.fill();
-        ctx.globalAlpha = 1.0;
+      if (active) {
+        requestAnimationFrame(updateConfetti);
       }
-
-      requestAnimationFrame(animateParticles);
     }
-    animateParticles();
   </script>
 </body>
 </html>
-```
